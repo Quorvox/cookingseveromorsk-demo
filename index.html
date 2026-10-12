@@ -3,215 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Кафе-Кулинария — Североморск | Демо v4</title>
+<title>Кафе-Кулинария — Североморск | Демо v6</title>
 <style>
 *{box-sizing:border-box}
 :root{
-  --bg:#0b0a09; --card:rgba(255,255,255,.055); --line:rgba(255,255,255,.12);
-  --text:#f2ece1; --muted:#b3a691; --gold:#f5b301; --gold2:#ffd34d; --shadow:0 18px 60px rgba(0,0,0,.55);
+  --bg:#faf6ee; --bg2:#f1e9d8; --card:#ffffff; --line:#e7dcc4;
+  --text:#241d12; --muted:#8a7a5f; --gold:#c98a0a; --gold2:#e8a90c; --red:#c0392b;
+  --shadow:0 14px 40px rgba(120,85,20,.14); --r:20px;
 }
-:root[data-theme="light"]{
-  --bg:#f4f1ea; --card:rgba(255,255,255,.78); --line:rgba(30,25,15,.13);
-  --text:#1d1a15; --muted:#6f665a; --gold:#b97c0a; --gold2:#e0a312; --shadow:0 18px 50px rgba(60,45,10,.14);
+:root[data-theme="dark"]{
+  --bg:#0b0a09; --bg2:#161311; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.13);
+  --text:#f2ece1; --muted:#b3a691; --gold:#f5b301; --gold2:#ffd34d; --shadow:0 18px 60px rgba(0,0,0,.55);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0d0b09; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.13);
-    --text:#f2ece1; --muted:#b6a996; --gold:#f5b301; --gold2:#ffd34d; --shadow:0 18px 60px rgba(0,0,0,.55);
+    --bg:#0b0a09; --bg2:#161311; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.13);
+    --text:#f2ece1; --muted:#b3a691; --gold:#f5b301; --gold2:#ffd34d; --shadow:0 18px 60px rgba(0,0,0,.55);
   }
 }
-:root[data-theme="dark"]{
-  --bg:#0d0b09; --card:rgba(255,255,255,.06); --line:rgba(255,255,255,.13);
-  --text:#f2ece1; --muted:#b6a996; --gold:#f5b301; --gold2:#ffd34d; --shadow:0 18px 60px rgba(0,0,0,.55);
-}
-body{margin:0;background:radial-gradient(900px 400px at 15% 0%, color-mix(in srgb, var(--gold2) 13%, transparent), transparent),var(--bg);
-color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6}
-.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+body{margin:0;background:var(--bg);color:var(--text);
+font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.6;overflow-x:hidden}
+h1,h2,.serif{font-family:Georgia,"Times New Roman",serif}
+.wrap{max-width:1140px;margin:0 auto;padding:0 16px}
 .demo{font-size:12px;background:#ffdf5d;color:#3a2f00;padding:8px;text-align:center;font-weight:800}
-header{position:sticky;top:0;z-index:40;background:color-mix(in srgb, var(--bg) 82%, transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+header{position:sticky;top:0;z-index:40;background:color-mix(in srgb, var(--bg) 82%, transparent);
+backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;gap:8px;padding:10px 0}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;letter-spacing:.06em;margin-right:auto}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:900;letter-spacing:.08em;margin-right:auto;color:var(--text)}
 .brand small{display:block;font-size:10px;letter-spacing:.35em;color:var(--muted);font-weight:600}
 .icon{width:20px;height:20px;flex:none}
 .navi{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .nbtn{border:1px solid var(--line);background:transparent;color:var(--muted);padding:9px 14px;border-radius:99px;cursor:pointer;font-size:14px;text-decoration:none;white-space:nowrap}
 .nbtn.on{background:var(--text);color:var(--bg);border-color:var(--text);font-weight:700}
-.theme{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:99px;padding:7px;cursor:pointer;display:inline-flex;gap:4px;align-items:center}
-.theme svg{width:20px;height:20px}
-.theme .t-sun{display:none}
-:root[data-theme="light"] .theme .t-sun,.theme.lite .t-sun{display:block}
-:root[data-theme="light"] .theme .t-moon,.theme.lite .t-moon{display:none}
-@media (prefers-color-scheme: light){:root:not([data-theme="dark"]) .theme .t-sun{display:block}:root:not([data-theme="dark"]) .theme .t-moon{display:none}}
+.hbtn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:99px;padding:8px 12px;cursor:pointer;display:inline-flex;gap:6px;align-items:center;font-weight:800}
+.hbtn .t-sun{display:none}
+:root[data-theme="light"] .hbtn .t-sun{display:block}
+:root[data-theme="light"] .hbtn .t-moon{display:none}
+.cartbtn{position:relative}
+.cartbtn .n{position:absolute;top:-7px;right:-7px;background:var(--red);color:#fff;font-size:11px;font-weight:800;
+min-width:20px;height:20px;border-radius:99px;display:grid;place-items:center;padding:0 5px}
 .burger{display:none;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;padding:9px 12px;cursor:pointer;font-size:18px}
-@media(max-width:860px){
+@media(max-width:920px){
   .navi{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 16px;flex-direction:column;align-items:stretch}
   .navi.open{display:flex}
   .burger{display:block}
 }
-.view{display:none;animation:fade .3s ease}
-.view.on{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.hero{padding:36px 0 8px;text-align:center}
-.addr{font-size:clamp(20px,3.4vw,30px);font-weight:900;letter-spacing:.04em}
-h1.sec{font-size:clamp(32px,5vw,52px);margin:6px 0;letter-spacing:.05em;color:var(--gold);font-weight:900}
-.rule{display:flex;align-items:center;gap:14px;justify-content:center;color:var(--muted);font-size:12px;letter-spacing:.15em;flex-wrap:wrap}
-.rule::before,.rule::after{content:"";height:1px;width:min(200px,26vw);background:var(--line)}
-.glass{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
-.btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#1a1405;padding:12px 20px;border-radius:14px;font-weight:800;font-size:15px;border:0}
+.view{display:none}
+.view.on{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.06)}100%{transform:scale(1);opacity:1}}
+@keyframes slidein{from{transform:translateX(60px);opacity:0}to{transform:none;opacity:1}}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;padding:44px 0 20px}
+@media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center}}
+.eyebrow{letter-spacing:.3em;font-size:12px;color:var(--gold);font-weight:800}
+.hero h1{font-size:clamp(36px,5.4vw,60px);line-height:1.05;margin:10px 0}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.lead{color:var(--muted);font-size:17px;max-width:52ch}
+@media(max-width:900px){.lead{margin:0 auto}}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+@media(max-width:900px){.cta{justify-content:center}}
+.btn{display:inline-flex;align-items:center;gap:8px;cursor:pointer;text-decoration:none;
+background:linear-gradient(135deg,var(--gold),var(--gold2));color:#241a02;padding:13px 24px;border-radius:14px;font-weight:800;font-size:15px;border:0;
+transition:transform .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
 .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
-.rowbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:16px 0}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
-@media(max-width:900px){.cards{grid-template-columns:1fr 1fr}}
-@media(max-width:560px){.cards{grid-template-columns:1fr}}
-.info{padding:16px;text-align:center}
-.info b{font-size:20px}
-.soc{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}
-@media(max-width:640px){.soc{grid-template-columns:1fr}}
-.soc a{text-decoration:none}
-.cats{display:flex;gap:20px;justify-content:center;margin:20px 0;flex-wrap:wrap}
-.cat{background:none;border:0;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;letter-spacing:.12em;font-weight:800}
-.cat .dot{width:62px;height:62px;border-radius:50%;display:block;overflow:hidden;background:var(--card);border:1px solid var(--line)}
+.btn.red{background:var(--red);color:#fff}
+.dots{display:flex;gap:6px;margin-top:14px}
+@media(max-width:900px){.dots{justify-content:center}}
+.dots span{width:8px;height:8px;border-radius:99px;background:var(--line)}
+.dots span.on{width:26px;background:var(--gold)}
+.plate-wrap{position:relative;display:grid;place-items:center}
+.plate-img{width:min(430px,88vw);aspect-ratio:1;border-radius:50%;object-fit:cover;border:10px solid var(--card);
+box-shadow:var(--shadow);animation:floaty 6s ease-in-out infinite}
+.chip-f{position:absolute;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px 14px;
+font-size:13px;font-weight:800;box-shadow:var(--shadow);animation:pop .5s ease backwards}
+.marq{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);margin:26px 0}
+.marq-in{display:flex;gap:0;width:max-content;animation:marq 22s linear infinite;padding:10px 0}
+.marq-in span{padding:0 26px;font-weight:800;letter-spacing:.12em;font-size:13px;white-space:nowrap}
+.sec-t{text-align:center;margin:30px 0 6px}
+.sec-t h2{font-size:clamp(26px,3.6vw,38px);margin:4px 0}
+.sec-t p{color:var(--muted);margin:0}
+.cats{display:flex;gap:20px;justify-content:flex-start;margin:20px 0;flex-wrap:wrap}
+@media(max-width:900px){.cats{justify-content:center}}
+.cat{background:none;border:0;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;letter-spacing:.1em;font-weight:800;transition:transform .15s}
+.cat:hover{transform:translateY(-3px)}
+.cat .dot{width:74px;height:74px;border-radius:50%;overflow:hidden;background:var(--card);border:2px solid var(--line);transition:.2s}
 .cat .dot img{width:100%;height:100%;object-fit:cover;display:block}
-.cat.active{color:var(--gold)}
-.cat.active .dot{border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb, var(--gold) 30%, transparent)}
-.viewport{overflow:hidden;border-radius:20px}
+.cat.active{color:var(--text)}
+.cat.active .dot{border-color:var(--gold);box-shadow:0 8px 22px rgba(200,140,10,.35)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:18px 0}
+@media(max-width:1000px){.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);
+transition:transform .18s ease, box-shadow .18s ease;opacity:0;transform:translateY(18px)}
+.card.show{opacity:1;transform:none}
+.card:hover{transform:translateY(-5px)}
+.card .ph{height:170px;overflow:hidden;background:#ddd;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.card:hover .ph img{transform:scale(1.07)}
+.tag{position:absolute;top:10px;left:10px;background:var(--red);color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:99px}
+.card .bd{padding:14px}
+.card .bd b{font-size:16px}
+.stars{color:var(--gold);font-size:13px;letter-spacing:2px}
+.muted{color:var(--muted);font-size:13px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.price{font-weight:900;font-size:19px}
+.add{border:0;cursor:pointer;background:var(--text);color:var(--bg);font-weight:800;padding:9px 14px;border-radius:12px;font-size:13px;transition:transform .12s}
+.add:active{transform:scale(.93)}
+.banner{margin:30px 0;border-radius:24px;overflow:hidden;position:relative;background:#191410;color:#f5ead2;
+display:grid;grid-template-columns:1fr 1fr;min-height:220px}
+@media(max-width:760px){.banner{grid-template-columns:1fr}}
+.banner img{width:100%;height:100%;object-fit:cover;min-height:220px}
+.banner .tx{padding:34px;display:grid;align-content:center;gap:10px}
+.banner .tx h3{font-family:Georgia,serif;font-size:clamp(22px,3vw,32px);margin:0}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,94vw);background:var(--bg);border-left:1px solid var(--line);
+z-index:70;transform:translateX(105%);transition:transform .3s ease;display:flex;flex-direction:column}
+.drawer.on{transform:none;animation:slidein .3s ease}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:65;display:none}
+.scrim.on{display:block}
+.d-head{display:flex;align-items:center;gap:10px;padding:16px;border-bottom:1px solid var(--line)}
+.d-body{flex:1;overflow:auto;padding:14px 16px}
+.d-foot{border-top:1px solid var(--line);padding:16px}
+.ci{display:flex;gap:12px;align-items:center;border:1px solid var(--line);background:var(--card);border-radius:14px;padding:10px;margin:8px 0}
+.ci img{width:58px;height:58px;border-radius:10px;object-fit:cover;flex:none;background:#ccc}
+.qty{display:flex;gap:10px;align-items:center;margin-left:auto}
+.qty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer;font-weight:900}
+.total{font-size:26px;font-weight:900}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--text);color:var(--bg);
+padding:12px 22px;border-radius:99px;font-weight:700;font-size:14px;z-index:80;transition:transform .3s;opacity:0}
+.toast.on{transform:translateX(-50%);opacity:1}
+.viewport{overflow:hidden;border-radius:var(--r)}
 .track{display:flex;transition:transform .45s cubic-bezier(.3,.8,.3,1)}
-.spread{min-width:100%;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:14px}
+.spread{min-width:100%;display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px}
 @media(max-width:640px){.spread{grid-template-columns:1fr}}
 .viewport.windmill{animation:mill .65s ease}
-@keyframes mill{0%{transform:rotate(0) scale(1)}25%{transform:rotate(5deg) scale(.96)}50%{transform:rotate(-5deg) scale(.97)}75%{transform:rotate(3deg) scale(.99)}100%{transform:rotate(0) scale(1)}}
-.page{padding:16px}
-.photo{height:230px;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#241f19;position:relative}
-@media(max-width:640px){.photo{height:190px}}
-.photo img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
-.photo .fb{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:11px;letter-spacing:.2em}
-.dname{color:var(--gold);font-weight:900;margin:12px 0 2px;font-size:19px}
-.catline{font-size:11px;letter-spacing:.2em;color:var(--muted);font-weight:800}
-.ddesc{font-size:13.5px;color:var(--muted);margin:4px 0}
-details{font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;margin-top:8px}
-.price{color:var(--gold);font-weight:900;font-size:20px;margin-top:8px}
-.arrowrow{display:flex;gap:10px;justify-content:space-between;align-items:center;padding:0 4px}
-.arrow{width:52px;height:52px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer;font-size:22px;flex:none}
+@keyframes mill{0%{transform:rotate(0) scale(1)}25%{transform:rotate(4deg) scale(.96)}50%{transform:rotate(-4deg) scale(.97)}100%{transform:rotate(0) scale(1)}}
+.page{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;box-shadow:var(--shadow)}
+.page .photo{height:210px;border-radius:14px;overflow:hidden;background:#2a241d;position:relative}
+.page .photo img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.page .photo .fb{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font-size:11px;letter-spacing:.2em}
+.dname{font-family:Georgia,serif;font-size:20px;margin:12px 0 2px}
 .pager{display:flex;gap:8px;justify-content:center;align-items:center;padding:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
 .pager button{background:none;border:1px solid var(--line);color:var(--text);min-width:30px;height:30px;border-radius:99px;cursor:pointer;padding:0 8px}
 .pager button.on{background:var(--text);color:var(--bg);font-weight:800}
+.arrowrow{display:flex;justify-content:space-between;align-items:center}
+.arrow{width:50px;height:50px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer;font-size:22px}
 section{padding:24px 0}
 h2{font-size:24px;margin:0}
 .sub{color:var(--muted);margin:6px 0 14px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 @media(max-width:900px){.grid2{grid-template-columns:1fr}}
 .pad{padding:20px}
+.glass{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
 .chip{border:1px solid var(--line);background:transparent;color:var(--text);padding:9px 14px;border-radius:99px;cursor:pointer;font-size:14px}
 .chip.on{background:var(--text);color:var(--bg)}
-.bigplus{border:2px dashed var(--line);border-radius:18px;min-height:180px;display:grid;place-items:center;cursor:pointer;background:transparent;color:var(--muted);width:100%;padding:24px;font-size:15px}
-.bigplus .p{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;font-size:40px;background:var(--text);color:var(--bg);margin:0 auto 8px}
-.setitem{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0}
-.setitem img{width:60px;height:60px;border-radius:10px;object-fit:cover;flex:none;background:#333}
+.bigplus{border:2px dashed var(--line);border-radius:18px;min-height:170px;display:grid;place-items:center;cursor:pointer;background:transparent;color:var(--muted);width:100%;padding:22px;font-size:15px}
+.bigplus .p{width:66px;height:66px;border-radius:50%;display:grid;place-items:center;font-size:36px;background:var(--text);color:var(--bg);margin:0 auto 8px}
+.setitem{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0;background:var(--card)}
+.setitem img{width:58px;height:58px;border-radius:10px;object-fit:cover;flex:none;background:#ccc}
 .setitem .rm{margin-left:auto;border:1px solid var(--line);background:none;color:var(--text);border-radius:10px;cursor:pointer;padding:6px 10px}
-.total{font-size:30px;font-weight:900;color:var(--gold)}
-.kbd{font-size:13px;color:var(--muted)}
-.modal{position:fixed;inset:0;z-index:60;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.55);padding:12px}
+.modal{position:fixed;inset:0;z-index:75;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.55);padding:12px}
 .modal.on{display:flex}
 .sheet-m{background:var(--bg);border:1px solid var(--line);border-radius:20px;max-width:640px;width:100%;max-height:84vh;overflow:auto;padding:18px}
 .tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
 @media(max-width:560px){.tgrid{grid-template-columns:1fr 1fr}}
 .tbtn{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);cursor:pointer;padding:10px;display:flex;flex-direction:column;gap:8px;align-items:center;font-weight:800;font-size:13px}
-.tbtn img{width:100%;height:70px;object-fit:cover;border-radius:10px;background:#333}
-.pick{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0}
-.pick img{width:68px;height:68px;border-radius:10px;object-fit:cover;flex:none;background:#333}
+.tbtn img{width:100%;height:70px;object-fit:cover;border-radius:10px;background:#ccc}
+.pick{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px;margin:8px 0;background:var(--card)}
+.pick img{width:66px;height:66px;border-radius:10px;object-fit:cover;flex:none;background:#ccc}
 footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:13px;margin-top:14px}
 footer a{color:var(--gold)}
-a{color:inherit}
 .telbig{font-size:clamp(24px,5vw,34px);font-weight:900;color:var(--gold);text-decoration:none}
+.kbd{font-size:13px;color:var(--muted)}
+a{color:inherit}
 </style>
 </head>
 <body>
-<div class="demo">ДЕМО v5 — матовый чёрный со стеклом • слайд + мельница • фото из сети • тема солнце/луна</div>
+<div class="demo">ДЕМО v6 — светлый премиум + анимации + корзина с заказом по телефону</div>
 <header><div class="wrap nav">
 <a class="brand" href="#/home"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M7 12a5 5 0 0 1 10 0"/></svg><span>КУЛИНАРИЯ<small>СЕВЕРОМОРСК</small></span></a>
-<button class="burger" id="burger" aria-label="Меню">☰</button>
+<button class="burger" id="burger">☰</button>
 <nav class="navi" id="navi">
 <a class="nbtn" data-r="home" href="#/home">Главная</a>
-<a class="nbtn" data-r="menu" href="#/menu">Меню-книжка</a>
-<a class="nbtn" data-r="box" href="#/box">Конструктор сета</a>
+<a class="nbtn" data-r="menu" href="#/menu">Меню</a>
+<a class="nbtn" data-r="box" href="#/box">Конструктор</a>
 <a class="nbtn" data-r="delivery" href="#/delivery">Доставка</a>
 <a class="nbtn" data-r="contacts" href="#/contacts">Контакты</a>
 </nav>
-<button class="theme" id="themeBtn" title="Тёмная / светлая тема">
+<button class="hbtn" id="themeBtn" title="Тема">
 <svg class="t-moon icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
 <svg class="t-sun icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
 </button>
+<button class="hbtn cartbtn" id="cartBtn">Корзина <span class="n" id="cartN">0</span></button>
 </div></header>
 
 <div class="wrap">
 <div class="view" id="v-home">
 <div class="hero">
-<div class="addr">Североморск, ул. Пионерская, 22</div>
-<div class="rule">КАФЕ-КУЛИНАРИЯ • ЕЖЕДНЕВНО 10:00–22:00</div>
-<h1 class="sec">ДОМАШНЯЯ ЕДА</h1>
-<div class="rowbtns">
-<a class="btn" href="https://yandex.ru/maps/?text=Североморск, Пионерская 22" target="_blank" rel="noopener">Как найти</a>
+<div>
+<div class="eyebrow">СЕВЕРОМОРСК • ПИОНЕРСКАЯ 22</div>
+<h1>Вкусная еда, <em>тёплые моменты</em></h1>
+<p class="lead">Комплексный обед с 12:00 до 16:00, свежая выпечка каждый день и доставка по городу. В зале — 360 ₽, на вынос — 385 ₽.</p>
+<div class="cta">
+<a class="btn" href="#/menu">Смотреть меню</a>
 <a class="btn ghost" href="https://yandex.ru/maps/?rtext=~Североморск, Пионерская 22" target="_blank" rel="noopener">Построить маршрут</a>
-<a class="btn ghost" href="tel:+79113222130">Позвонить</a>
 </div>
-<div class="cards">
-<div class="glass info"><b>360 ₽</b><br><span class="kbd">средний комплекс в зале</span></div>
-<div class="glass info"><b>12:00–16:00</b><br><span class="kbd">комплексные обеды</span></div>
-<div class="glass info"><b>от 1000 ₽</b><br><span class="kbd">доставка бесплатно</span></div>
-<div class="glass info"><b id="dayN">...</b><br><span class="kbd" id="dayM">...</span></div>
+<div class="dots"><span class="on"></span><span></span><span></span></div>
 </div>
-<div class="soc">
-<a class="glass info" href="https://vk.com/cookingseveromorsk" target="_blank" rel="noopener"><b>Наш ВК</b><br><span class="kbd">vk.com/cookingseveromorsk — меню дня, выпечка, акции</span></a>
-<a class="glass info" href="https://www.instagram.com/" target="_blank" rel="noopener"><b>Наш Instagram</b><br><span class="kbd">фото блюд и отзывы — ссылку уточнить у кафе</span></a>
+<div class="plate-wrap">
+<img class="plate-img" id="heroImg" alt="Блюдо дня">
+<span class="chip-f" style="top:8%;left:2%">Комплекс 360 ₽</span>
+<span class="chip-f" style="bottom:12%;right:0%;animation-delay:.15s">Доставка от 1000 ₽ — 0 ₽</span>
 </div>
-<div class="glass info" style="text-align:left">
-<b>Почему к нам:</b><br>
-<span class="kbd">• Комплекс за 10 минут: салат + суп + горячее + компот/чай + хлеб.<br>
-• Свежая выпечка каждый день, корпоративные обеды и кейтеринг.<br>
-• Зал, вынос и доставка по городу: +7 911 322-21-30.</span>
-</div>
-<div class="rowbtns"><a class="btn" href="#/menu">Открыть меню-книжку</a><a class="btn ghost" href="#/box">Собрать свой сет</a></div>
 </div>
 </div>
 
+<div class="marq"><div class="marq-in" id="marq"></div></div>
+
+<div class="view" id="v-home2"></div>
+
 <div class="view" id="v-menu">
 <section>
-<div class="rule">МЕНЮ</div>
-<h1 class="sec" style="text-align:center">КНИЖКА</h1>
+<div class="sec-t"><div class="eyebrow">НАШЕ МЕНЮ</div><h2>Книжка блюд</h2><p>Листай стрелками: внутри раздела — слайд, между разделами — мельница</p></div>
 <div class="cats" id="cats"></div>
 <div class="glass" style="padding:10px">
 <div class="arrowrow"><button class="arrow" id="prev">‹</button><span class="kbd" id="pos">...</span><button class="arrow" id="next">›</button></div>
 <div class="viewport" id="vp"><div class="track" id="track"></div></div>
 <div class="pager" id="pager"></div>
-<p class="kbd" style="text-align:center">Внутри категории — плавный слайд: старые уезжают влево, новые приезжают справа. Переход между категориями — эффект мельницы.</p>
 </div>
 </section>
 </div>
 
 <div class="view" id="v-box">
 <section>
-<h2>Конструктор сета</h2>
-<p class="sub">Корзина → «Создать сет» → плюс в центре → тип → блюдо. Цена сразу.</p>
+<div class="sec-t"><div class="eyebrow">СОБЕРИ САМ</div><h2>Конструктор сета</h2><p>Плюс в центре → тип → блюдо. Цена сразу, сет — в корзину</p></div>
 <div class="grid2">
 <div class="glass pad">
 <div class="chips">
 <button class="chip on" id="m1">В зале — 360 ₽</button>
 <button class="chip" id="m2">Вынос — 385 ₽</button>
-<button class="chip" id="newSet" style="margin-left:auto">＋ Создать сет</button>
+<button class="chip" id="newSet" style="margin-left:auto">＋ Новый сет</button>
 </div>
 <div id="setBox"></div>
 <button class="bigplus" id="bigPlus"><span><span class="p">＋</span><br>Нажми — выбери тип, потом блюдо</span></button>
+<div class="chips"><button class="chip" id="setToCart">Сет — в корзину</button></div>
 </div>
 <div class="glass pad">
-<h3 style="margin:0">Корзина</h3>
+<h3 style="margin:0">Твой сет</h3>
 <div id="receipt"></div>
-<div class="total" id="sum">0 ₽</div>
+<div class="total price" id="sum" style="font-size:28px">0 ₽</div>
 <p class="kbd" id="save"></p>
-<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-<a class="btn" href="tel:+79113222130">Позвонить и заказать</a>
-<a class="btn ghost" href="https://vk.com/cookingseveromorsk" target="_blank" rel="noopener">Написать в ВК</a>
-</div>
 </div>
 </div>
 </section>
@@ -219,28 +263,59 @@ a{color:inherit}
 
 <div class="view" id="v-delivery">
 <section><div class="glass pad" style="text-align:center">
-<h2>Доставка по номеру телефона</h2>
-<p class="sub">Звони — соберут и привезут. Онлайн-оплаты в демо нет.</p>
+<div class="eyebrow">ДОСТАВКА</div>
+<h2>Заказ по телефону</h2>
+<p class="sub">Собери корзину и продиктуй заказ — так же, как в Додо, только без онлайн-оплаты.</p>
 <a class="telbig" href="tel:+79113222130">+7 911 322-21-30</a>
 <p>В зале — 360 ₽ • Вынос/доставка — 385 ₽ • Доставка 250 ₽, от 1000 ₽ бесплатно • 12:00–16:00</p>
-<div class="rowbtns"><a class="btn" href="tel:+79113222130">Позвонить сейчас</a>
-<a class="btn ghost" href="https://yandex.ru/maps/?rtext=~Североморск, Пионерская 22" target="_blank" rel="noopener">Маршрут до кафе</a></div>
+<div class="cta" style="justify-content:center"><a class="btn" href="tel:+79113222130">Позвонить сейчас</a>
+<button class="btn ghost" id="copyBtn">Скопировать заказ</button></div>
 </div></section>
 </div>
 
 <div class="view" id="v-contacts">
 <section><div class="glass pad">
-<h2>Контакты</h2>
+<div class="eyebrow">КОНТАКТЫ</div>
+<h2>Как нас найти</h2>
 <p>Североморск, ул. Пионерская, 22. Ежедневно 10:00–22:00.<br>
 Кафе: <a href="tel:+79113066379">+7 911 306-63-79</a> • Доставка: <a href="tel:+79113222130">+7 911 322-21-30</a></p>
-<div class="rowbtns" style="justify-content:flex-start">
-<a class="btn ghost" href="https://vk.com/cookingseveromorsk" target="_blank" rel="noopener">ВК</a>
+<div class="cta" style="justify-content:flex-start">
+<a class="btn" href="https://yandex.ru/maps/?text=Североморск, Пионерская 22" target="_blank" rel="noopener">Как найти</a>
+<a class="btn ghost" href="https://vk.com/cookingseveromorsk" target="_blank" rel="noopener">Наш ВК</a>
 <a class="btn ghost" href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a>
-<a class="btn ghost" href="https://yandex.ru/maps/?text=Североморск, Пионерская 22" target="_blank" rel="noopener">Карта</a>
 </div>
 </div></section>
 </div>
+
+<section id="hits">
+<div class="sec-t"><div class="eyebrow">ВЫБОР ГОСТЕЙ</div><h2>Хиты кафе</h2><p>То, что берут чаще всего</p></div>
+<div class="grid" id="hitsGrid"></div>
+</section>
+
+<section>
+<div class="banner">
+<div class="tx"><div class="eyebrow" style="color:#ffd34d">КОМПЛЕКСНЫЙ ОБЕД</div>
+<h3>Салат + суп + горячее + напиток за 360 ₽</h3>
+<p class="muted" style="color:#cbbfa4">Каждый будний день 12:00–16:00. Свежая выпечка — каждый день.</p>
+<div><a class="btn" href="#/box">Собрать свой сет</a></div></div>
+<img id="bannerImg" alt="Обед">
 </div>
+</section>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer">
+<div class="d-head"><b>Корзина</b><span class="kbd" id="dCount"></span>
+<button class="chip" id="dClose" style="margin-left:auto">Закрыть</button></div>
+<div class="d-body" id="dBody"></div>
+<div class="d-foot">
+<div class="row"><span class="kbd">Итого</span><span class="total" id="dSum">0 ₽</span></div>
+<div class="cta"><a class="btn red" href="tel:+79113222130">Заказать по телефону</a>
+<button class="btn ghost" id="copyBtn2">Скопировать заказ</button></div>
+<p class="kbd">Нажми «Скопировать заказ» и отправь список в ВК кафе или продиктуй по телефону.</p>
+</div>
+</aside>
+<div class="toast" id="toast"></div>
 
 <div class="modal" id="modal"><div class="sheet-m">
 <div style="display:flex;align-items:center;gap:10px"><h3 id="mTitle" style="margin:0">Выбери тип</h3>
@@ -256,91 +331,202 @@ Telegram: <a href="https://t.me/Quorvox_team" target="_blank" rel="noopener">t.m
 </div></footer>
 
 <script>
-const root=document.documentElement;
-function paintTheme(){themeBtn.classList.toggle('lite',root.getAttribute('data-theme')==='light'||(!root.getAttribute('data-theme')&&matchMedia('(prefers-color-scheme: light)').matches))}
-const sv=localStorage.getItem('ck4'); if(sv)root.setAttribute('data-theme',sv); paintTheme();
-themeBtn.onclick=()=>{const c=root.getAttribute('data-theme');
-const n=c==='dark'?'light':c==='light'?'dark':(matchMedia('(prefers-color-scheme: dark)').matches?'light':'dark');
-root.setAttribute('data-theme',n);localStorage.setItem('ck4',n);paintTheme()};
-burger.onclick=()=>navi.classList.toggle('open');
-navi.querySelectorAll('a').forEach(a=>a.onclick=()=>navi.classList.remove('open'));
-const VIEWS=['home','menu','box','delivery','contacts'];
-function route(){let h=(location.hash||'#/home').replace('#/',''); if(!VIEWS.includes(h))h='home';
-VIEWS.forEach(v=>document.getElementById('v-'+v).classList.toggle('on',v===h));
-document.querySelectorAll('.nbtn').forEach(b=>b.classList.toggle('on',b.dataset.r===h));window.scrollTo(0,0)}
+var root=document.documentElement;
+var sv=null; try{sv=localStorage.getItem('ck6')}catch(e){}
+if(sv){root.setAttribute('data-theme',sv)}
+document.getElementById('themeBtn').onclick=function(){
+  var c=root.getAttribute('data-theme'); var n='dark';
+  if(c==='dark'){n='light'}else if(c==='light'){n='dark'}
+  else{if(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches){n='light'}}
+  root.setAttribute('data-theme',n); try{localStorage.setItem('ck6',n)}catch(e){}
+};
+document.getElementById('burger').onclick=function(){document.getElementById('navi').classList.toggle('open')};
+var NAVI=document.getElementById('navi');
+var VIEWS=['home','menu','box','delivery','contacts'];
+function route(){var h=(location.hash||'#/home').replace('#/','');
+if(VIEWS.indexOf(h)<0){h='home'}
+for(var i=0;i<VIEWS.length;i++){document.getElementById('v-'+VIEWS[i]).classList.toggle('on',VIEWS[i]===h)}
+var btns=document.querySelectorAll('.nbtn');
+for(var j=0;j<btns.length;j++){btns[j].classList.toggle('on',btns[j].getAttribute('data-r')===h)}
+NAVI.classList.remove('open');window.scrollTo(0,0);reveal()}
 window.addEventListener('hashchange',route);
-const U=id=>'https://images.unsplash.com/'+id+'?w=800&q=60&auto=format&fit=crop';
-// только проверенные фото-ID (категории грузятся — эти же ID используем в блюдах)
-const IMG={salad:U('photo-1512621776951-a57141f2eefd'),bowl:U('photo-1546069901-ba9599a7e63c'),
+function U(id){return 'https://images.unsplash.com/'+id+'?w=800&q=60&auto=format&fit=crop'}
+var IMG={salad:U('photo-1512621776951-a57141f2eefd'),bowl:U('photo-1546069901-ba9599a7e63c'),
 veg:U('photo-1540189549336-e6e99c3679fe'),pizza:U('photo-1565299624946-b28f40a0ae38'),
 pancake:U('photo-1567620905732-2d1ec7ab7445'),soup:U('photo-1547592166-23ac45744acd'),
 bread:U('photo-1509440159596-0249088772ff'),tea:U('photo-1544787219-7f47ccb76574'),
 meat:U('photo-1544025162-d76694265947'),rice:U('photo-1512058564366-18510be2db19'),
 burger:U('photo-1550547660-d9450f859349'),cake:U('photo-1565958011703-44f9829ba187')};
-const CATS=[['salad','САЛАТЫ',IMG.salad],['soup','СУПЫ',IMG.soup],['main','ГОРЯЧЕЕ',IMG.meat],['bake','ВЫПЕЧКА',IMG.bread],['drink','НАПИТКИ',IMG.tea]];
-const DISHES=[
-{cat:'salad',name:'Оливье',desc:'Классика, с колбасой.',comp:'Картофель, морковь, яйцо, колбаса, огурец, горошек.',w:'150 г',price:110,img:IMG.salad},
-{cat:'salad',name:'Нежность',desc:'Легкий салат дня.',comp:'Курица, яйцо, огурец, сыр.',w:'150 г',price:120,img:IMG.bowl},
-{cat:'salad',name:'Крабовый',desc:'С кукурузой.',comp:'Крабовые палочки, кукуруза, рис, яйцо.',w:'150 г',price:115,img:IMG.veg},
-{cat:'salad',name:'Южный',desc:'Овощной.',comp:'Капуста, морковь, перец, масло.',w:'150 г',price:95,img:IMG.pizza},
-{cat:'soup',name:'Борщ',desc:'Наваристый.',comp:'Свекла, капуста, картофель, говядина.',w:'300 г',price:130,img:IMG.soup},
-{cat:'soup',name:'Щи',desc:'Домашние.',comp:'Капуста, картофель, морковь.',w:'300 г',price:120,img:IMG.bowl},
-{cat:'soup',name:'С фрикадельками',desc:'Легкий.',comp:'Фрикадельки, вермишель, картофель.',w:'300 г',price:125,img:IMG.veg},
-{cat:'main',name:'Котлета куриная + греча',desc:'Хит четверга.',comp:'Котлета, сыр, греча, подлива.',w:'120/150 г',price:190,img:IMG.meat},
-{cat:'main',name:'Гуляш с рисом',desc:'Говядина в подливе.',comp:'Говядина, лук, рис.',w:'120/150 г',price:195,img:IMG.rice},
-{cat:'main',name:'Тефтели с макаронами',desc:'С томатом.',comp:'Фарш, рис, макароны.',w:'120/150 г',price:175,img:IMG.burger},
-{cat:'bake',name:'Пирожок с капустой',desc:'Свежая выпечка.',comp:'Тесто, капуста, яйцо.',w:'100 г',price:45,img:IMG.bread},
-{cat:'bake',name:'Булочка с сахаром',desc:'К чаю.',comp:'Тесто, сахар, масло.',w:'90 г',price:40,img:IMG.pancake},
-{cat:'drink',name:'Компот',desc:'Входит в комплекс.',comp:'Сухофрукты / ягоды.',w:'200 мл',price:50,img:IMG.cake},
-{cat:'drink',name:'Чай',desc:'Черный / зеленый.',comp:'Чай, сахар, лимон.',w:'200 мл',price:40,img:IMG.tea}];
-const catName=k=>(CATS.find(c=>c[0]===k)||[0,k])[1];
-const ORDER=['salad','soup','main','bake','drink'];
-const FLAT=[]; ORDER.forEach(k=>DISHES.filter(d=>d.cat===k).forEach(d=>FLAT.push(d)));
-let pg=0; const PER=2; const pages=[]; for(let i=0;i<FLAT.length;i+=PER)pages.push(FLAT.slice(i,i+PER));
-const catsEl=document.getElementById('cats'),track=document.getElementById('track'),
-pager=document.getElementById('pager'),vp=document.getElementById('vp'),pos=document.getElementById('pos');
-CATS.forEach(([k,label,img])=>{const b=document.createElement('button');b.className='cat';
-b.innerHTML='<span class="dot"><img loading="lazy" referrerpolicy="no-referrer" src="'+img+'" onerror="this.remove()"></span>'+label;
-b.onclick=()=>{const idx=FLAT.findIndex(d=>d.cat===k);goTo(Math.floor(idx/PER),true)};catsEl.appendChild(b)});
-function card(d){return '<div class="catline">'+catName(d.cat)+'</div><div class="photo"><span class="fb">ФОТО</span><img loading="lazy" referrerpolicy="no-referrer" src="'+d.img+'" onerror="this.remove()"></div>'+
-'<div class="dname">'+d.name+'</div><p class="ddesc">'+d.desc+'</p><details><summary>Состав блюда</summary>'+d.comp+'</details><div class="price">'+d.price+' ₽ <span class="kbd">'+d.w+'</span></div>'}
-track.innerHTML=pages.map(p=>'<div class="spread">'+p.map(d=>'<div class="page glass">'+card(d)+'</div>').join('')+'</div>').join('');
+var CATS=[['salad','Салаты',IMG.salad],['soup','Супы',IMG.soup],['main','Горячее',IMG.meat],['bake','Выпечка',IMG.bread],['drink','Напитки',IMG.tea]];
+var DISHES=[
+{cat:'salad',name:'Оливье',desc:'Классика, с колбасой.',comp:'Картофель, морковь, яйцо, колбаса, огурец, горошек.',w:'150 г',price:110,img:IMG.salad,rate:'4.8',votes:124,hit:1},
+{cat:'salad',name:'Нежность',desc:'Легкий салат дня.',comp:'Курица, яйцо, огурец, сыр.',w:'150 г',price:120,img:IMG.bowl,rate:'4.7',votes:86,hit:0},
+{cat:'salad',name:'Крабовый',desc:'С кукурузой.',comp:'Крабовые палочки, кукуруза, рис, яйцо.',w:'150 г',price:115,img:IMG.veg,rate:'4.6',votes:64,hit:0},
+{cat:'salad',name:'Южный',desc:'Овощной.',comp:'Капуста, морковь, перец, масло.',w:'150 г',price:95,img:IMG.pizza,rate:'4.5',votes:41,hit:0},
+{cat:'soup',name:'Борщ',desc:'Наваристый.',comp:'Свекла, капуста, картофель, говядина.',w:'300 г',price:130,img:IMG.soup,rate:'4.9',votes:152,hit:1},
+{cat:'soup',name:'Щи',desc:'Домашние.',comp:'Капуста, картофель, морковь.',w:'300 г',price:120,img:IMG.bowl,rate:'4.6',votes:58,hit:0},
+{cat:'soup',name:'С фрикадельками',desc:'Легкий.',comp:'Фрикадельки, вермишель, картофель.',w:'300 г',price:125,img:IMG.veg,rate:'4.7',votes:73,hit:0},
+{cat:'main',name:'Котлета куриная + греча',desc:'Хит четверга.',comp:'Котлета, сыр, греча, подлива.',w:'120/150 г',price:190,img:IMG.meat,rate:'4.9',votes:187,hit:1},
+{cat:'main',name:'Гуляш с рисом',desc:'Говядина в подливе.',comp:'Говядина, лук, рис.',w:'120/150 г',price:195,img:IMG.rice,rate:'4.8',votes:141,hit:1},
+{cat:'main',name:'Тефтели с макаронами',desc:'С томатом.',comp:'Фарш, рис, макароны.',w:'120/150 г',price:175,img:IMG.burger,rate:'4.6',votes:69,hit:0},
+{cat:'bake',name:'Пирожок с капустой',desc:'Свежая выпечка.',comp:'Тесто, капуста, яйцо.',w:'100 г',price:45,img:IMG.bread,rate:'4.8',votes:98,hit:0},
+{cat:'bake',name:'Булочка с сахаром',desc:'К чаю.',comp:'Тесто, сахар, масло.',w:'90 г',price:40,img:IMG.pancake,rate:'4.7',votes:77,hit:0},
+{cat:'drink',name:'Компот',desc:'Входит в комплекс.',comp:'Сухофрукты и ягоды.',w:'200 мл',price:50,img:IMG.cake,rate:'4.6',votes:52,hit:0},
+{cat:'drink',name:'Чай',desc:'Черный и зеленый.',comp:'Чай, сахар, лимон.',w:'200 мл',price:40,img:IMG.tea,rate:'4.5',votes:44,hit:0}];
+function catName(k){for(var i=0;i<CATS.length;i++){if(CATS[i][0]===k){return CATS[i][1]}}return k}
+function byName(n){for(var i=0;i<DISHES.length;i++){if(DISHES[i].name===n){return DISHES[i]}}return null}
+/* витрина + корзина как у Додо */
+var cart={};
+function cartCount(){var n=0;for(var k in cart){n+=cart[k]}return n}
+function cartSum(){var s=0;for(var k in cart){var d=byName(k);if(d){s+=d.price*cart[k]}}return s}
+function toast(t){var el=document.getElementById('toast');el.textContent=t;el.classList.add('on');
+setTimeout(function(){el.classList.remove('on')},1800)}
+function addToCart(n){if(!cart[n]){cart[n]=0}cart[n]++;paintCart();toast(n+' — в корзине')}
+function paintCart(){
+  document.getElementById('cartN').textContent=cartCount();
+  var keys=Object.keys(cart); var body=document.getElementById('dBody');
+  if(!keys.length){body.innerHTML='<p class="kbd">Пока пусто. Добавь что-нибудь из хитов или книжки.</p>'}
+  else{var h='';
+    for(var i=0;i<keys.length;i++){var d=byName(keys[i]);if(!d){continue}
+      h+='<div class="ci"><img loading="lazy" referrerpolicy="no-referrer" src="'+d.img+'" onerror="this.remove()">'+
+      '<div><b>'+d.name+'</b><br><span class="kbd">'+d.price+' ₽</span></div>'+
+      '<div class="qty"><button data-a="m" data-n="'+d.name+'">−</button><b>'+cart[keys[i]]+'</b><button data-a="p" data-n="'+d.name+'">+</button></div></div>'}
+    body.innerHTML=h;
+    var btns=body.querySelectorAll('button');
+    for(var j=0;j<btns.length;j++){btns[j].onclick=function(){var n=this.getAttribute('data-n');
+      if(this.getAttribute('data-a')==='p'){cart[n]++}else{cart[n]--;if(cart[n]<=0){delete cart[n]}}paintCart()}}}
+  document.getElementById('dSum').textContent=cartSum()+' ₽';
+  document.getElementById('dCount').textContent=cartCount()?cartCount()+' поз.':'';
+}
+function orderText(){var keys=Object.keys(cart);if(!keys.length){return 'Корзина пуста'}
+  var lines=['Заказ из Кафе-Кулинарии:'];
+  for(var i=0;i<keys.length;i++){var d=byName(keys[i]);if(d){lines.push((i+1)+'. '+d.name+' x'+cart[keys[i]]+' = '+(d.price*cart[keys[i]])+' ₽')}}
+  lines.push('Итого: '+cartSum()+' ₽');lines.push('Тел: +7 911 322-21-30');return lines.join('\n')}
+function copyOrder(){var t=orderText();
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast('Заказ скопирован')},function(){toast(t)})}
+  else{toast(t)}}
+document.getElementById('cartBtn').onclick=function(){document.getElementById('drawer').classList.add('on');document.getElementById('scrim').classList.add('on')};
+document.getElementById('dClose').onclick=closeDrawer;
+document.getElementById('scrim').onclick=closeDrawer;
+function closeDrawer(){document.getElementById('drawer').classList.remove('on');document.getElementById('scrim').classList.remove('on')}
+document.getElementById('copyBtn').onclick=copyOrder;
+document.getElementById('copyBtn2').onclick=copyOrder;
+/* карточки */
+function stars(r){return '★★★★★'.slice(0,Math.round(r))+'☆☆☆☆☆'.slice(0,5-Math.round(r))}
+function dishCard(d){return '<div class="card"><div class="ph">'+(d.hit?'<span class="tag">Хит</span>':'')+
+'<img loading="lazy" referrerpolicy="no-referrer" src="'+d.img+'" alt="'+d.name+'" onerror="this.remove()"></div>'+
+'<div class="bd"><b>'+d.name+'</b><br><span class="stars">'+stars(+d.rate)+'</span> <span class="kbd">'+d.rate+' ('+d.votes+')</span>'+
+'<p class="muted">'+d.desc+' '+d.w+'</p>'+
+'<div class="row"><span class="price">'+d.price+' ₽</span><button class="add" data-n="'+d.name+'">В корзину</button></div></div></div>'}
+function bindAdds(scope){var btns=scope.querySelectorAll('.add');
+for(var i=0;i<btns.length;i++){btns[i].onclick=function(){addToCart(this.getAttribute('data-n'))}}}
+var hitsGrid=document.getElementById('hitsGrid');
+(function(){var h='';for(var i=0;i<DISHES.length;i++){if(DISHES[i].hit){h+=dishCard(DISHES[i])}}hitsGrid.innerHTML=h;bindAdds(hitsGrid)})();
+document.getElementById('heroImg').src=IMG.bowl;
+document.getElementById('bannerImg').src=IMG.meat;
+(function(){var t='КОМПЛЕКС 360 ₽ В ЗАЛЕ • ВЫНОС 385 ₽ • ДОСТАВКА ОТ 1000 ₽ БЕСПЛАТНО • 12:00–16:00 • ';
+document.getElementById('marq').innerHTML='<span>'+t+'</span><span>'+t+'</span>'})();
+/* книжка */
+var ORDER=['salad','soup','main','bake','drink'];
+var FLAT=[];for(var c=0;c<ORDER.length;c++){for(var i=0;i<DISHES.length;i++){if(DISHES[i].cat===ORDER[c]){FLAT.push(DISHES[i])}}}
+var pg=0;var PER=2;var pages=[];for(var k=0;k<FLAT.length;k+=PER){pages.push(FLAT.slice(k,k+PER))}
+var catsEl=document.getElementById('cats');
+var track=document.getElementById('track');
+var pager=document.getElementById('pager');
+var vp=document.getElementById('vp');
+var pos=document.getElementById('pos');
+for(var ci=0;ci<CATS.length;ci++){(function(k,label,img){
+  var b=document.createElement('button');b.className='cat';
+  b.innerHTML='<span class="dot"><img loading="lazy" referrerpolicy="no-referrer" src="'+img+'" onerror="this.remove()"></span>'+label;
+  b.onclick=function(){var idx=0;for(var i=0;i<FLAT.length;i++){if(FLAT[i].cat===k){idx=i;break}}
+    goTo(Math.floor(idx/PER),true)};
+  catsEl.appendChild(b)})(CATS[ci][0],CATS[ci][1],CATS[ci][2])}
+function bookCard(d){return '<div class="page"><div class="catline">'+catName(d.cat)+'</div>'+
+'<div class="photo"><span class="fb">ФОТО</span><img loading="lazy" referrerpolicy="no-referrer" src="'+d.img+'" alt="'+d.name+'" onerror="this.remove()"></div>'+
+'<div class="dname">'+d.name+'</div><p class="muted">'+d.desc+'</p>'+
+'<details><summary>Состав блюда</summary>'+d.comp+'</details>'+
+'<div class="row"><span class="price">'+d.price+' ₽ <span class="kbd">'+d.w+'</span></span><button class="add" data-n="'+d.name+'">В корзину</button></div></div>'}
+(function(){var h='';for(var i=0;i<pages.length;i++){h+='<div class="spread">';
+  for(var j=0;j<pages[i].length;j++){h+=bookCard(pages[i][j])}h+='</div>'}
+track.innerHTML=h;bindAdds(track)})();
 function paint(){track.style.transform='translateX(-'+(pg*100)+'%)';
-const cur=pages[pg][0];pos.textContent=catName(cur.cat)+' • стр '+(pg+1)+'/'+pages.length;
-pager.innerHTML=pages.map((p,i)=>'<button class="'+(i===pg?'on':'')+'" data-i="'+i+'">'+(i+1)+'</button>').join('');
-pager.querySelectorAll('[data-i]').forEach(b=>b.onclick=()=>goTo(+b.dataset.i)) }
-function goTo(n,byCat){const oldCat=pages[pg][0].cat,newCat=pages[n][0].cat;
+var cur=pages[pg][0];pos.textContent=catName(cur.cat)+' • стр '+(pg+1)+'/'+pages.length;
+var h='';for(var i=0;i<pages.length;i++){h+='<button class="'+(i===pg?'on':'')+'" data-i="'+i+'">'+(i+1)+'</button>'}
+pager.innerHTML=h;
+var btns=pager.querySelectorAll('[data-i]');
+for(var j=0;j<btns.length;j++){btns[j].onclick=function(){var n=+this.getAttribute('data-i');goTo(n)}}}
+function goTo(n,byCat){var oldCat=pages[pg][0].cat;var newCat=pages[n][0].cat;
 if(byCat||oldCat!==newCat){vp.classList.remove('windmill');void vp.offsetWidth;vp.classList.add('windmill');
-setTimeout(()=>{pg=n;paint();vp.classList.remove('windmill')},320)}
+setTimeout(function(){pg=n;paint();vp.classList.remove('windmill')},320)}
 else{pg=n;paint()}}
-prev.onclick=()=>goTo((pg-1+pages.length)%pages.length);
-next.onclick=()=>goTo((pg+1)%pages.length);
+document.getElementById('prev').onclick=function(){goTo((pg-1+pages.length)%pages.length)};
+document.getElementById('next').onclick=function(){goTo((pg+1)%pages.length)};
 paint();
-const days=['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
-const dm={0:'Крабовый • Борщ • Тефтели',1:'Оливье • Щи • Ёжики',2:'Южный • Вермишелевый • Гуляш',3:'Нежность • С фрикадельками • Котлета',4:'Оливье • Свекольный • Котлета',5:'Крабовый • Борщ • Тефтели',6:'Нежность • Щи • Гуляш'};
-const dd=new Date().getDay();dayN.textContent='Сегодня '+days[dd];dayM.textContent=dm[dd];
-let mode=360,setItems=[];
-m1.onclick=()=>{mode=360;m1.classList.add('on');m2.classList.remove('on');calc()};
-m2.onclick=()=>{mode=385;m2.classList.add('on');m1.classList.remove('on');calc()};
-newSet.onclick=()=>{setItems=[];drawSet();openTypes()};
-bigPlus.onclick=()=>openTypes();
-function drawSet(){setBox.innerHTML=setItems.length?setItems.map((d,i)=>'<div class="setitem"><img loading="lazy" referrerpolicy="no-referrer" src="'+d.img+'" onerror="this.remove()"><div><b>'+d.name+'</b><br><span class="kbd">'+catName(d.cat)+' • '+d.price+' ₽</span></div><button class="rm" data-i="'+i+'">Убрать</button></div>').join(''):'<p class="kbd">Сет пока пуст. Нажми плюс — выбери тип, потом блюдо.</p>';
-setBox.querySelectorAll('.rm').forEach(b=>b.onclick=()=>{setItems.splice(+b.dataset.i,1);drawSet()});calc()}
-function calc(){let sum=setItems.reduce((a,d)=>a+d.price,0);
-receipt.innerHTML=setItems.length?setItems.map(d=>'<div style="display:flex;justify-content:space-between;font-size:14px;border-bottom:1px dashed var(--line);padding:6px 0"><span>'+d.name+'</span><b>'+d.price+' ₽</b></div>').join(''):'<p class="kbd">Корзина пуста.</p>';
-sum.textContent=sum+' ₽';
-const hasAll=['salad','soup','main','drink'].every(k=>setItems.some(d=>d.cat===k));
-if(setItems.length&&hasAll){save.textContent='Полный сет! Комплексом: '+mode+' ₽ вместо '+sum+' ₽. Выгода '+(sum-mode)+' ₽.'}else if(setItems.length){save.textContent='Собери все 4 типа. Выгода комплексом 360/385 ₽.'}else{save.textContent=''}}
-
-const modal=document.getElementById('modal');
-mClose.onclick=()=>modal.classList.remove('on');modal.onclick=e=>{if(e.target===modal)modal.classList.remove('on')};
-function openTypes(){mTitle.textContent='Шаг 1 — выбери тип';mBody.innerHTML='<div class="tgrid">'+CATS.slice(0,4).map(c=>'<button class="tbtn" data-k="'+c[0]+'"><img loading="lazy" referrerpolicy="no-referrer" src="'+c[2]+'" onerror="this.remove()">'+c[1]+'</button>').join('')+'</div>';
-mBody.querySelectorAll('.tbtn').forEach(b=>b.onclick=()=>openDishes(b.dataset.k));modal.classList.add('on')}
-function openDishes(k){mTitle.textContent='Шаг 2 — выбери: '+catName(k);
-mBody.innerHTML=DISHES.filter(d=>d.cat===k).map(d=>'<div class="pick"><img loading="lazy" referrerpolicy="no-referrer" src="'+d.img+'" onerror="this.remove()"><div><b>'+d.name+'</b><br><span class="kbd">'+d.comp+'</span><br><b>'+d.price+' ₽</b></div><button class="chip" style="margin-left:auto" data-n="'+d.name+'">Добавить</button></div>').join('')+'<button class="chip" id="back">← Назад к типам</button>';
+/* конструктор */
+var mode=360;var setItems=[];
+document.getElementById('m1').onclick=function(){mode=360;
+document.getElementById('m1').classList.add('on');document.getElementById('m2').classList.remove('on');calc()};
+document.getElementById('m2').onclick=function(){mode=385;
+document.getElementById('m2').classList.add('on');document.getElementById('m1').classList.remove('on');calc()};
+document.getElementById('newSet').onclick=function(){setItems=[];drawSet();openTypes()};
+document.getElementById('bigPlus').onclick=openTypes;
+document.getElementById('setToCart').onclick=function(){
+if(!setItems.length){toast('Сет пуст — добавь блюда');return}
+for(var i=0;i<setItems.length;i++){var n=setItems[i].name;if(!cart[n]){cart[n]=0}cart[n]++}
+paintCart();toast('Сет — в корзине')};
+function drawSet(){var box=document.getElementById('setBox');
+if(!setItems.length){box.innerHTML='<p class="kbd">Сет пока пуст. Нажми плюс — выбери тип, потом блюдо.</p>'}
+else{var h='';for(var i=0;i<setItems.length;i++){var d=setItems[i];
+h+='<div class="setitem"><img loading="lazy" referrerpolicy="no-referrer" src="'+d.img+'" onerror="this.remove()">'+
+'<div><b>'+d.name+'</b><br><span class="kbd">'+catName(d.cat)+' • '+d.price+' ₽</span></div>'+
+'<button class="rm" data-i="'+i+'">Убрать</button></div>'}
+box.innerHTML=h;
+var rms=box.querySelectorAll('.rm');
+for(var j=0;j<rms.length;j++){rms[j].onclick=function(){setItems.splice(+this.getAttribute('data-i'),1);drawSet()}}}
+calc()}
+function calc(){var sum=0;for(var i=0;i<setItems.length;i++){sum+=setItems[i].price}
+var rc=document.getElementById('receipt');
+if(setItems.length){var h='';for(var j=0;j<setItems.length;j++){
+h+='<div style="display:flex;justify-content:space-between;font-size:14px;border-bottom:1px dashed var(--line);padding:6px 0"><span>'+setItems[j].name+'</span><b>'+setItems[j].price+' ₽</b></div>'}
+rc.innerHTML=h}else{rc.innerHTML='<p class="kbd">Пока пусто.</p>'}
+document.getElementById('sum').textContent=sum+' ₽';
+var hasAll=true;var need=['salad','soup','main','drink'];
+for(var q=0;q<need.length;q++){var found=false;
+for(var w=0;w<setItems.length;w++){if(setItems[w].cat===need[q]){found=true;break}}
+if(!found){hasAll=false;break}}
+var sv=document.getElementById('save');
+if(setItems.length&&hasAll){sv.textContent='Полный сет! Комплексом: '+mode+' ₽ вместо '+sum+' ₽. Выгода '+(sum-mode)+' ₽.'}
+else if(setItems.length){sv.textContent='Собери все 4 типа. Выгода комплексом 360/385 ₽.'}
+else{sv.textContent=''}}
+var modal=document.getElementById('modal');
+document.getElementById('mClose').onclick=function(){modal.classList.remove('on')};
+modal.onclick=function(e){if(e.target===modal){modal.classList.remove('on')}};
+function openTypes(){document.getElementById('mTitle').textContent='Шаг 1 — выбери тип';
+var h='<div class="tgrid">';
+for(var i=0;i<4;i++){h+='<button class="tbtn" data-k="'+CATS[i][0]+'"><img loading="lazy" referrerpolicy="no-referrer" src="'+CATS[i][2]+'" onerror="this.remove()">'+CATS[i][1]+'</button>'}
+document.getElementById('mBody').innerHTML=h+'</div>';
+var btns=document.getElementById('mBody').querySelectorAll('.tbtn');
+for(var j=0;j<btns.length;j++){btns[j].onclick=function(){openDishes(this.getAttribute('data-k'))}}
+modal.classList.add('on')}
+function openDishes(k){document.getElementById('mTitle').textContent='Шаг 2 — выбери: '+catName(k);
+var h='';for(var i=0;i<DISHES.length;i++){if(DISHES[i].cat!==k){continue}
+var d=DISHES[i];
+h+='<div class="pick"><img loading="lazy" referrerpolicy="no-referrer" src="'+d.img+'" onerror="this.remove()">'+
+'<div><b>'+d.name+'</b><br><span class="kbd">'+d.comp+'</span><br><b>'+d.price+' ₽</b></div>'+
+'<button class="chip" style="margin-left:auto" data-n="'+d.name+'">Добавить</button></div>'}
+h+='<button class="chip" id="back">Назад к типам</button>';
+document.getElementById('mBody').innerHTML=h;
 document.getElementById('back').onclick=openTypes;
-mBody.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{setItems.push(DISHES.find(x=>x.name===b.dataset.n));drawSet();modal.classList.remove('on')})}
-drawSet();route();
+var btns=document.getElementById('mBody').querySelectorAll('[data-n]');
+for(var j=0;j<btns.length;j++){btns[j].onclick=function(){var d=byName(this.getAttribute('data-n'));
+if(d){setItems.push(d)}drawSet();modal.classList.remove('on')}}}
+/* анимации появления */
+var io=null;
+if('IntersectionObserver' in window){
+io=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){if(es[i].isIntersecting){es[i].target.classList.add('show');io.unobserve(es[i].target)}}},{threshold:.12})}
+function reveal(){var els=document.querySelectorAll('.card');
+for(var i=0;i<els.length;i++){if(io){io.observe(els[i])}else{els[i].classList.add('show')}}}
+drawSet();paintCart();route();
 </script>
 </body>
 </html>
